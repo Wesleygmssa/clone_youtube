@@ -13,7 +13,14 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
-import { AccountCircle, MoreVert } from "@material-ui/icons";
+
+import {
+  AccountCircle,
+  MoreVert,
+  Subscriptions,
+  Whatshot,
+} from "@material-ui/icons";
+import HomeIcon from "@material-ui/icons/Home";
 import Apps from "@material-ui/icons/Apps";
 import VideoCall from "@material-ui/icons/VideoCall";
 
@@ -24,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     boxShadow: "none",
+    zIndex: theme.zIndex.drawer + 1,
   },
   grow: {
     flexGrow: 1,
@@ -37,6 +45,21 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: "30px",
+  },
+  drawer: {
+    width: 240,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: 240,
+    borderRight: "none",
+  },
+  ListItemText: {
+    fontSize: 14,
+  },
+  ListItem: {
+    paddingTop: 4,
+    paddingBottom: 4,
   },
 }));
 
@@ -104,14 +127,37 @@ const Home = () => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <ListItem button>
+              <ListItemIcon> {<HomeIcon />}</ListItemIcon>
+              <ListItemText
+                classes={{
+                  primary: classes.ListItemText,
+                }}
+                primary={"Início"}
+              />
+            </ListItem>
+
+            <ListItem button>
+              <ListItemIcon> {<Subscriptions />}</ListItemIcon>
+
+              <ListItemText
+                classes={{
+                  primary: classes.ListItemText,
+                }}
+                primary={"Em alta"}
+              />
+            </ListItem>
+
+            <ListItem button classes={{ root: classes.ListItem }}>
+              <ListItemIcon> {<Whatshot />}</ListItemIcon>
+
+              <ListItemText
+                classes={{
+                  primary: classes.ListItemText,
+                }}
+                primary={"Inscrições"}
+              />
+            </ListItem>
           </List>
           <Divider />
           <List>
